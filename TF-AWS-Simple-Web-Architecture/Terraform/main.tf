@@ -80,7 +80,7 @@ resource "aws_instance" "tf-instance1" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.sg.id]
   subnet_id              = aws_subnet.subnet1.id
-  user_data              = base64encode(file("userdata1.sh"))
+  user_data              = base64encode(file("${path.module}/Scripts/userdata1.sh"))
 }
 
 resource "aws_instance" "tf-instance2" {
@@ -88,7 +88,7 @@ resource "aws_instance" "tf-instance2" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.sg.id]
   subnet_id              = aws_subnet.subnet2.id
-  user_data              = base64encode(file("userdata2.sh"))
+  user_data              = base64encode(file"${path.module}/Scripts/userdata2.sh")
 }
 
 resource "aws_lb" "alb" {
