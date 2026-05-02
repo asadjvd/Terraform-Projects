@@ -68,6 +68,173 @@ resource "aws_subnet" "subnet2" {
 
 ---
 
-
+**3. Internet Gateway (IGW)**
+* Attached to VPC
+* Provides internet access to public subnets
 
 ```
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.vpc.id
+}
+```
+
+---
+
+**4. Route Table**
+* Custom route table created
+
+```
+resource "aws_route_table" "rtb" {
+  vpc_id = aws_vpc.vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+}
+```
+
+* Associated with both public subnets
+
+```
+resource "aws_route_table_association" "rta1" {
+  subnet_id      = aws_subnet.subnet1.id
+  route_table_id = aws_route_table.rtb.id
+}
+
+resource "aws_route_table_association" "rta2" {
+  subnet_id      = aws_subnet.subnet2.id
+  route_table_id = aws_route_table.rtb.id
+}
+```
+
+---
+
+**5. Security Group**
+
+Allows inbound traffic:
+
+<img src="Images/websg.PNG">
+
+```
+resource "aws_security_group" "sg" {
+  name   = "websg"
+  vpc_id = aws_vpc.vpc.id
+
+  ingress {
+    description = "HTTP from VPC"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Allow SSH"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "Web-SG"
+  }
+}
+```
+
+---
+
+**6. EC2 Instances (Web Servers)**
+* 2 instances deployed in different subnets:
+  * Instance 1 → us-east-1a
+  * Instance 2 → us-east-1b
+   
+```
+
+resource "aws_instance" "tf-instance1" {
+  ami                    = "ami-05cf1e9f73fbad2e2"
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.sg.id]
+  subnet_id              = aws_subnet.subnet1.id
+  user_data              = base64encode(file("${path.module}/Scripts/userdata1.sh"))
+}
+
+resource "aws_instance" "tf-instance2" {
+  ami                    = "ami-05cf1e9f73fbad2e2"
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.sg.id]
+  subnet_id              = aws_subnet.subnet2.id
+  user_data              = base64encode(file("${path.module}/Scripts/userdata2.sh"))
+}
+```
+
+**User Data Script (Bootstrap)**
+
+* Each instance runs a bash script that:
+  * Fetches instance metadata
+  * Displays instance ID
+  * Serves a simple web page
+
+```
+#!/bin/bash
+apt update
+apt install -y apache2
+
+# IMDSv2 token
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" \
+  -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+
+# Get instance ID
+INSTANCE_ID=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" \
+  -s http://169.254.169.254/latest/meta-data/instance-id)
+
+# Install the AWS CLI
+apt install -y awscli
+
+# Download the images from S3 bucket
+#aws s3 cp s3://myterraformprojectbucket2023/project.webp /var/www/html/project.png --acl public-read
+
+# Create a simple HTML file with the portfolio content and display the images
+cat <<EOF > /var/www/html/index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Portfolio</title>
+  <style>
+    /* Add animation and styling for the text */
+    @keyframes colorChange {
+      0% { color: red; }
+      50% { color: green; }
+      100% { color: blue; }
+    }
+    h1 {
+      animation: colorChange 2s infinite;
+    }
+  </style>
+</head>
+<body>
+  <h1>Terraform Project Server 1</h1>
+  <h2>Instance ID: <span style="color:green">$INSTANCE_ID</span></h2>
+  <p>Welcome!!</p>
+  
+</body>
+</html>
+EOF
+
+# Start Apache and enable it on boot
+systemctl start apache2
+systemctl enable apache2
+```
+
+---
+
+
+
