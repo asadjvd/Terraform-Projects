@@ -12,3 +12,15 @@ The architecture demonstrates core DevOps and Cloud skills including:
 * EC2 provisioning
 * Security groups configuration
 * Load balancing (ALB)
+
+---
+
+### **2. Architecture Diagram**
+
+---
+
+<img src="Images/TF-AWS_Project.png">
+
+---
+
+
