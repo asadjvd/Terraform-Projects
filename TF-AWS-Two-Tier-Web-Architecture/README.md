@@ -19,7 +19,7 @@ The architecture demonstrates core DevOps and Cloud skills including:
 
 ---
 
-<img src="Images/TF-AWS_Project.png">
+<img src="Images/TF-AWS_Proj.png">
 
 ---
 
