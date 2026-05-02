@@ -16,6 +16,15 @@
   - [S3 Bucket](#6-s3-bucket)
   - [EC2 Instances (Web Servers)](#7-ec2-instances-web-servers)
   - [Application Load Balancer (ALB)](#8-application-load-balancer-alb)
+- [High Availability Design](#4-high-availability-design)
+- [How to Deploy](#5-how-to-deploy)
+  - [Initialize Terraform](#1-initialize-terraform)
+  - [Validate Infrastructure](#2-validate-infrastructure)
+  - [Plan Infrastructure](#3-plan-infrastructure)
+  - [Apply Infrastructure](#4-apply-infrastructure)
+  - [Destory Infrastructure](#5-destroy-infrastructure)
+- [Skills Demonstrated](#6-skills-demonstrated)
+
 ---
 
 ### **1. Project Overview**
@@ -345,7 +354,7 @@ output "loadbalancerdns" {
 
 ---
 
-### High Availability Design
+### **4. High Availability Design**
 EC2 instances deployed in two Availability Zones
 Load Balancer ensures:
 * fault tolerance
@@ -354,7 +363,7 @@ Load Balancer ensures:
 
 ---
 
-### How to Deploy
+### **5. How to Deploy**
 #### 1. Initialize Terraform
 
 ```bash
@@ -387,7 +396,7 @@ terraform destroy
 
 ---
 
-### Skills Demonstrated
+### **6. Skills Demonstrated**
 * AWS VPC Networking
 * Subnet design across AZs
 * EC2 provisioning with user data
