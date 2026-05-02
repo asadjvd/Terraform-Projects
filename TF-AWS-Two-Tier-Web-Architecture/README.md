@@ -23,4 +23,12 @@ The architecture demonstrates core DevOps and Cloud skills including:
 
 ---
 
+### **3. Infrastructure Components**
+
+---
+
+**1. Custom VPC**
+* CIDR block defined for isolated networking
+* Enables full control over AWS networking
+
 
