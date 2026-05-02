@@ -72,7 +72,7 @@ resource "aws_subnet" "subnet2" {
 * Attached to VPC
 * Provides internet access to public subnets
 
-```
+```bash
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
 }
@@ -83,7 +83,7 @@ resource "aws_internet_gateway" "igw" {
 **4. Route Table**
 * Custom route table created
 
-```
+```bash
 resource "aws_route_table" "rtb" {
   vpc_id = aws_vpc.vpc.id
 
@@ -96,7 +96,7 @@ resource "aws_route_table" "rtb" {
 
 * Associated with both public subnets
 
-```
+```bash
 resource "aws_route_table_association" "rta1" {
   subnet_id      = aws_subnet.subnet1.id
   route_table_id = aws_route_table.rtb.id
@@ -116,7 +116,7 @@ Allows inbound traffic:
 
 <img src="Images/websg.PNG">
 
-```
+```bash
 resource "aws_security_group" "sg" {
   name   = "websg"
   vpc_id = aws_vpc.vpc.id
@@ -152,13 +152,23 @@ resource "aws_security_group" "sg" {
 
 ---
 
-**6. EC2 Instances (Web Servers)**
+**6. S3 Bucket**
+* Create S3 bucket to store objects like files:
+
+```bash
+resource "aws_s3_bucket" "tf-bucket" {
+  bucket = "asadjvdtfawsbucket"
+}
+```
+
+---
+
+**7. EC2 Instances (Web Servers)**
 * 2 instances deployed in different subnets:
   * Instance 1 → us-east-1a
   * Instance 2 → us-east-1b
    
-```
-
+```bash
 resource "aws_instance" "tf-instance1" {
   ami                    = "ami-05cf1e9f73fbad2e2"
   instance_type          = "t2.micro"
@@ -176,6 +186,12 @@ resource "aws_instance" "tf-instance2" {
 }
 ```
 
+---
+
+<img src="Images/ec2-instances.PNG">
+
+---
+
 **User Data Script (Bootstrap)**
 
 * Each instance runs a bash script that:
@@ -183,7 +199,7 @@ resource "aws_instance" "tf-instance2" {
   * Displays instance ID
   * Serves a simple web page
 
-```
+```bash
 #!/bin/bash
 apt update
 apt install -y apache2
@@ -236,5 +252,132 @@ systemctl enable apache2
 
 ---
 
+**8. Application Load Balancer (ALB)**
+* Distributes traffic across both EC2 instances
+* Ensures high availability
+* Health checks configured on HTTP port 80
 
+```bash
+resource "aws_lb" "alb" {
+  name               = "tf-aws-alb"
+  internal           = false
+  load_balancer_type = "application"
 
+  security_groups = [aws_security_group.sg.id]
+  subnets         = [aws_subnet.subnet1.id, aws_subnet.subnet2.id]
+
+  tags = {
+    Name = "web"
+  }
+}
+
+resource "aws_lb_target_group" "tg" {
+  name     = "tf-aws-tg"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = aws_vpc.vpc.id
+
+  health_check {
+    path = "/"
+    port = "traffic-port"
+  }
+}
+
+resource "aws_lb_target_group_attachment" "attach1" {
+  target_group_arn = aws_lb_target_group.tg.arn
+  target_id        = aws_instance.tf-instance1.id
+  port             = 80
+}
+
+resource "aws_lb_target_group_attachment" "attach2" {
+  target_group_arn = aws_lb_target_group.tg.arn
+  target_id        = aws_instance.tf-instance2.id
+  port             = 80
+}
+
+resource "aws_lb_listener" "listener" {
+  load_balancer_arn = aws_lb.alb.arn
+  port              = 80
+  protocol          = "HTTP"
+
+  default_action {
+    target_group_arn = aws_lb_target_group.tg.arn
+    type             = "forward"
+  }
+}
+
+output "loadbalancerdns" {
+  value = aws_lb.alb.dns_name
+}
+```
+
+---
+
+<img src="Images/tf-lb.PNG">
+
+---
+
+<img src="Images/tg-healthy-targets.PNG">
+
+---
+
+<img src="Images/tg-registered-targets.PNG">
+
+---
+
+<img src="Images/LB-Img.PNG">
+
+---
+
+## High Availability Design
+EC2 instances deployed in two Availability Zones
+Load Balancer ensures:
+* fault tolerance
+* traffic distribution
+* automatic failover
+
+---
+
+## How to Deploy
+**1. Initialize Terraform**
+
+```bash
+terraform init
+```
+
+**2. Validate configuration**
+
+```bash
+terraform validate
+```
+
+**3. Plan infrastructure**
+
+```bash
+terraform plan
+```
+
+**4. Apply infrastructure**
+
+```bash
+terraform apply --auto-approve
+```
+
+**5. Destroy infrastructure**
+
+```bash
+terraform destroy
+```
+
+---
+
+## Skills Demonstrated
+* AWS VPC Networking
+* Subnet design across AZs
+* EC2 provisioning with user data
+* Load balancing (ALB)
+* Infrastructure as Code (Terraform)
+* Basic DevOps automation
+* Cloud architecture design
+
+---
