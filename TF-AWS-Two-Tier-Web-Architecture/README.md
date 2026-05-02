@@ -43,7 +43,7 @@ The architecture demonstrates core DevOps and Cloud skills including:
 
 ---
 
-**1. Custom VPC**
+#### 1. Custom VPC
 * CIDR block defined for isolated networking
 * Enables full control over AWS networking
 
@@ -59,7 +59,7 @@ resource "aws_vpc" "vpc" {
 
 ---
 
-**2. Public Subnets**
+#### 2. Public Subnets
 
 * Two public subnets deployed in:
   * us-east-1a
@@ -84,7 +84,7 @@ resource "aws_subnet" "subnet2" {
 
 ---
 
-**3. Internet Gateway (IGW)**
+#### 3. Internet Gateway (IGW)
 * Attached to VPC
 * Provides internet access to public subnets
 
@@ -96,7 +96,7 @@ resource "aws_internet_gateway" "igw" {
 
 ---
 
-**4. Route Table**
+#### 4. Route Table
 * Custom route table created
 
 ```bash
@@ -126,7 +126,7 @@ resource "aws_route_table_association" "rta2" {
 
 ---
 
-**5. Security Group**
+#### 5. Security Group
 
 Allows inbound traffic:
 
@@ -168,7 +168,7 @@ resource "aws_security_group" "sg" {
 
 ---
 
-**6. S3 Bucket**
+#### 6. S3 Bucket
 * Create S3 bucket to store objects like files:
 
 ```bash
@@ -179,7 +179,7 @@ resource "aws_s3_bucket" "tf-bucket" {
 
 ---
 
-**7. EC2 Instances (Web Servers)**
+#### 7. EC2 Instances (Web Servers)
 * 2 instances deployed in different subnets:
   * Instance 1 → us-east-1a
   * Instance 2 → us-east-1b
@@ -268,7 +268,7 @@ systemctl enable apache2
 
 ---
 
-**8. Application Load Balancer (ALB)**
+#### 8. Application Load Balancer (ALB)
 * Distributes traffic across both EC2 instances
 * Ensures high availability
 * Health checks configured on HTTP port 80
@@ -345,7 +345,7 @@ output "loadbalancerdns" {
 
 ---
 
-## High Availability Design
+### High Availability Design
 EC2 instances deployed in two Availability Zones
 Load Balancer ensures:
 * fault tolerance
@@ -354,32 +354,32 @@ Load Balancer ensures:
 
 ---
 
-## How to Deploy
-**1. Initialize Terraform**
+### How to Deploy
+#### 1. Initialize Terraform
 
 ```bash
 terraform init
 ```
 
-**2. Validate configuration**
+#### 2. Validate configuration
 
 ```bash
 terraform validate
 ```
 
-**3. Plan infrastructure**
+#### 3. Plan infrastructure
 
 ```bash
 terraform plan
 ```
 
-**4. Apply infrastructure**
+#### 4. Apply infrastructure
 
 ```bash
 terraform apply --auto-approve
 ```
 
-**5. Destroy infrastructure**
+#### 5. Destroy infrastructure
 
 ```bash
 terraform destroy
@@ -387,7 +387,7 @@ terraform destroy
 
 ---
 
-## Skills Demonstrated
+### Skills Demonstrated
 * AWS VPC Networking
 * Subnet design across AZs
 * EC2 provisioning with user data
