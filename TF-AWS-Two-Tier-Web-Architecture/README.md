@@ -2,6 +2,22 @@
 
 ---
 
+---
+
+### **Table of Contents**
+1. [Project Overview](#1-project-overview)
+2. [Architecture Diagram](#2-architecture-diagram)
+3. [Infrastructure Components](#3-infrastructure-components)
+4. [Custom VPC](#4-custom-vpc)
+5. [Public Subnets](#5-public-subnets)
+6. [Internet Gateway](#6-internet-gateway)
+7. [Route Table](#7-route-table)
+8. [Security Group](#8-security-group)
+9. [S3 Bucket](#9-s3-bucket)
+10. [EC2 Instances (Web Servers)](#10-ec2-instances-web-servers)
+11.  [Application Load Balancer (ALB)](#11-application-load-balancer-alb)
+---
+
 ### **1. Project Overview**
 
 This project provisions a highly available web architecture on AWS using Terraform. It includes a custom VPC, public subnets across two availability zones, EC2 instances running a simple web server, an Application Load Balancer, and an S3 bucket.
