@@ -5,17 +5,17 @@
 ---
 
 ### **Table of Contents**
-1. [Project Overview](#1-project-overview)
-2. [Architecture Diagram](#2-architecture-diagram)
-3. [Infrastructure Components](#3-infrastructure-components)
-4. [Custom VPC](#4-custom-vpc)
-5. [Public Subnets](#5-public-subnets)
-6. [Internet Gateway](#6-internet-gateway)
-7. [Route Table](#7-route-table)
-8. [Security Group](#8-security-group)
-9. [S3 Bucket](#9-s3-bucket)
-10. [EC2 Instances (Web Servers)](#10-ec2-instances-web-servers)
-11.  [Application Load Balancer (ALB)](#11-application-load-balancer-alb)
+- [Project Overview](#1-project-overview)
+- [Architecture Diagram](#2-architecture-diagram)
+- [Infrastructure Components](#3-infrastructure-components)
+  - [Custom VPC](#1-custom-vpc)
+  - [Public Subnets](#2-public-subnets)
+  - [Internet Gateway](#3-internet-gateway)
+  - [Route Table](#4-route-table)
+  - [Security Group](#5-security-group)
+  - [S3 Bucket](#6-s3-bucket)
+  - [EC2 Instances (Web Servers)](#7-ec2-instances-web-servers)
+  - [Application Load Balancer (ALB)](#8-application-load-balancer-alb)
 ---
 
 ### **1. Project Overview**
