@@ -1,6 +1,6 @@
 # Create Secrets Manager secret for database credentials
 resource "aws_secretsmanager_secret" "db_credentials" {
-  name                    = "ritualroastdb-secret"
+  name                    = "ritualroastdb-secret" # Hard coded in python script
   description             = "Database credentials for ${var.project} ${var.environment} environment"
   recovery_window_in_days = var.recovery_window_in_days
 
