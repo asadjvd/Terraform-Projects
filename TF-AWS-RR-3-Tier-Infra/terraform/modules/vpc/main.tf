@@ -84,7 +84,7 @@ resource "aws_subnet" "database" {
 
 # Elastic IP for NAT GWs
 resource "aws_eip" "nat" {
-# for_each = var.enable_nat_gateway ? var.public_subnet_cidrs : {} # for multiple NAT GWs
+  # for_each = var.enable_nat_gateway ? var.public_subnet_cidrs : {} # for multiple NAT GWs
   for_each = var.enable_nat_gateway ? local.nat_gateway_subnet : {}
 
   domain = "vpc"
@@ -100,17 +100,17 @@ resource "aws_eip" "nat" {
 
 # NAT GWs
 resource "aws_nat_gateway" "main" {
-#  for_each = var.enable_nat_gateway ? var.public_subnet_cidrs : {} # For multiple NAT GWs
+  #  for_each = var.enable_nat_gateway ? var.public_subnet_cidrs : {} # For multiple NAT GWs
   for_each = var.enable_nat_gateway ? local.nat_gateway_subnet : {}
 
-# for for_each usage
-/* 
+  # for for_each usage
+  /* 
   allocation_id = aws_eip.nat[each.key].id
   subnet_id     = aws_subnet.public[each.key].id 
 */
 
   allocation_id = aws_eip.nat[each.key].id
-  subnet_id = var.single_nat_gateway ? values(aws_subnet.public)[0].id : aws_subnet.public[each.key].id 
+  subnet_id     = var.single_nat_gateway ? values(aws_subnet.public)[0].id : aws_subnet.public[each.key].id
 
   tags = merge(
     var.tags,
@@ -151,12 +151,12 @@ resource "aws_route_table_association" "public" {
 
 # Route Tables for Web Private Subnets
 resource "aws_route_table" "web" {
-#  for_each = var.enable_nat_gateway ? var.web_subnet_cidrs : {} # For multiple NAT GWs
-  for_each = var.single_nat_gateway? {
+  #  for_each = var.enable_nat_gateway ? var.web_subnet_cidrs : {} # For multiple NAT GWs
+  for_each = var.single_nat_gateway ? {
     shared = "shared"
   } : var.web_subnet_cidrs
 
-  vpc_id   = aws_vpc.custom_vpc.id
+  vpc_id = aws_vpc.custom_vpc.id
 
   tags = merge(
     var.tags,
@@ -174,8 +174,8 @@ resource "aws_route" "web_nat" {
   route_table_id         = aws_route_table.web[each.key].id
   */
   for_each = aws_route_table.web
-  
-  route_table_id = each.value.id
+
+  route_table_id         = each.value.id
   destination_cidr_block = "0.0.0.0/0"
   # For multiple NAT GWs
   # nat_gateway_id         = aws_nat_gateway.main[var.nat_gateway_subnet_mapping[each.key]].id

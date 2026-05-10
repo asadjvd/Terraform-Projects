@@ -78,9 +78,9 @@ module "iam" {
   source = "../../modules/iam"
 
   s3_bucket_arn = module.s3.bucket_arn
-  environment  = var.environment
-  project      = var.project
-  secrets_arns = ["*"]
+  environment   = var.environment
+  project       = var.project
+  secrets_arns  = ["*"]
 
   tags = var.tags
 }
@@ -101,8 +101,8 @@ module "alb" {
 module "asg" {
   source = "../../modules/asg"
 
-  environment       = var.environment
-  project           = var.project
+  environment          = var.environment
+  project              = var.project
   region               = var.region
   instance_type        = var.webapp_instance_type
   key_name             = var.ssh_key_name
@@ -110,7 +110,7 @@ module "asg" {
   security_group_id    = module.security_groups.web_sg_id
   subnet_ids           = module.vpc.web_subnet_ids
   target_group_arn     = module.alb.target_group_arn
-  bucket_name = module.s3.bucket_name
+  bucket_name          = module.s3.bucket_name
   min_size             = var.webapp_min_size
   max_size             = var.webapp_max_size
   desired_capacity     = var.webapp_desired_capacity

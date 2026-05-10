@@ -1,6 +1,6 @@
 variable "bucket_name" {
   description = "Bucket name"
-  type = string
+  type        = string
 }
 
 variable "bucket_suffix" {

@@ -34,9 +34,9 @@ resource "aws_s3_object" "flask_files" {
   for_each = fileset("${path.root}/../../flask", "**/*")
 
   bucket = aws_s3_bucket.flask_app.id
-  key = "flask/${each.value}"
+  key    = "flask/${each.value}"
   source = "${path.root}/../../flask/${each.value}"
-  etag = filemd5("${path.root}/../../flask/${each.value}")
+  etag   = filemd5("${path.root}/../../flask/${each.value}")
   content_type = lookup({
     html = "text/html"
     css  = "text/css"

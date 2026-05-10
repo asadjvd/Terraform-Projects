@@ -20,10 +20,10 @@ data "aws_ami" "amazon_linux_2023" {
 }
 
 resource "aws_launch_template" "webapp" {
-  name_prefix = "${var.environment}-${var.project}-webapp-"
-  image_id      = var.ami_id != "" ? var.ami_id : data.aws_ami.amazon_linux_2023.id
-  instance_type = var.instance_type
-  key_name = var.key_name
+  name_prefix            = "${var.environment}-${var.project}-webapp-"
+  image_id               = var.ami_id != "" ? var.ami_id : data.aws_ami.amazon_linux_2023.id
+  instance_type          = var.instance_type
+  key_name               = var.key_name
   vpc_security_group_ids = [var.security_group_id]
 
   iam_instance_profile {
@@ -69,12 +69,12 @@ resource "aws_launch_template" "webapp" {
 resource "aws_autoscaling_group" "webapp" {
   name = "${var.environment}-${var.project}-webapp-asg"
 
-  min_size         = var.min_size
-  desired_capacity = var.desired_capacity
-  max_size         = var.max_size
-  vpc_zone_identifier = values(var.subnet_ids)
-  target_group_arns = [var.target_group_arn]
-  health_check_type = "ELB"
+  min_size                  = var.min_size
+  desired_capacity          = var.desired_capacity
+  max_size                  = var.max_size
+  vpc_zone_identifier       = values(var.subnet_ids)
+  target_group_arns         = [var.target_group_arn]
+  health_check_type         = "ELB"
   health_check_grace_period = 300
 
   launch_template {

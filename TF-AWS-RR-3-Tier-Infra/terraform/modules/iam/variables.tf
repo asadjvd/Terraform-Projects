@@ -10,8 +10,8 @@ variable "project" {
 
 variable "secrets_arns" {
   description = "Map of Secrets Manager ARNs that EC2 instances can access"
-  type = list(string)
-  default = ["*"]
+  type        = list(string)
+  default     = ["*"]
 }
 
 variable "s3_bucket_arn" {

@@ -1,17 +1,17 @@
 resource "aws_db_subnet_group" "main" {
-  name = "${var.environment}-${var.project}-db-subnet-group"
+  name       = "${var.environment}-${var.project}-db-subnet-group"
   subnet_ids = values(var.subnet_ids)
 
   tags = merge(
     var.tags,
     {
-        Name = "${var.environment}-${var.project}-db-subnet-group"
+      Name = "${var.environment}-${var.project}-db-subnet-group"
     }
   )
 }
 
 resource "aws_db_parameter_group" "main" {
-  name = "${var.environment}-${var.project}-mysql8"
+  name   = "${var.environment}-${var.project}-mysql8"
   family = "mysql8.4"
 
   parameter {
@@ -20,40 +20,40 @@ resource "aws_db_parameter_group" "main" {
   }
 
   parameter {
-  name  = "long_query_time"
-  value = "2"
-}
+    name  = "long_query_time"
+    value = "2"
+  }
 
   tags = merge(
     var.tags,
     {
-        Name = "${var.environment}-${var.project}-mysql8"
+      Name = "${var.environment}-${var.project}-mysql8"
     }
   )
 }
 
 resource "aws_db_instance" "main" {
-  identifier = "${var.environment}-${var.project}-mysql8"
-  engine = "mysql"
+  identifier     = "${var.environment}-${var.project}-mysql8"
+  engine         = "mysql"
   engine_version = var.engine_version
 
-  instance_class = var.instance_class
+  instance_class    = var.instance_class
   allocated_storage = var.allocated_storage
-  storage_type = "gp3"
+  storage_type      = "gp3"
   storage_encrypted = true
 
-  db_name = var.db_name
+  db_name  = var.db_name
   username = var.db_username
   password = var.db_password
-  port = 3306
+  port     = 3306
 
   vpc_security_group_ids = [var.security_group_id]
-  db_subnet_group_name = aws_db_subnet_group.main.name
-  parameter_group_name = aws_db_parameter_group.main.name
+  db_subnet_group_name   = aws_db_subnet_group.main.name
+  parameter_group_name   = aws_db_parameter_group.main.name
 
-  multi_az = var.db_multi_az
+  multi_az            = var.db_multi_az
   publicly_accessible = false
-  availability_zone = var.db_multi_az ? null : var.availability_zone
+  availability_zone   = var.db_multi_az ? null : var.availability_zone
 
   backup_retention_period = var.backup_retention_period
   backup_window           = "03:00-04:00"

@@ -1,96 +1,96 @@
 variable "environment" {
   description = "Environment name"
-  type = string
+  type        = string
 }
 
 variable "project" {
   description = "Project name"
-  type = string
+  type        = string
 }
 
 variable "subnet_ids" {
   description = "Map of subnet IDs for DB subnet group"
-  type = map(string)
+  type        = map(string)
 }
 
 variable "security_group_id" {
   description = "Security group ID for RDS"
-  type = string
+  type        = string
 }
 
 variable "instance_class" {
   description = "RDS instance class"
-  type = string
-  default = "db.t3.micro"
+  type        = string
+  default     = "db.t3.micro"
 }
 
 variable "allocated_storage" {
   description = "Allocated storage in GB"
-  type = number
-  default = 20
+  type        = number
+  default     = 20
 }
 
 variable "engine_version" {
   description = "MySQL engine version"
-  type = string
-  default = "8.4"
+  type        = string
+  default     = "8.4"
 }
 
 variable "db_name" {
   description = "Database name"
-  type = string
-  default = "ritualroastdb"
+  type        = string
+  default     = "ritualroastdb"
 }
 
 variable "db_username" {
   description = "Database username"
-  type = string
+  type        = string
 }
 
 variable "db_password" {
   description = "Database password"
-  type = string
-  sensitive = true
+  type        = string
+  sensitive   = true
 }
 
 variable "db_multi_az" {
   description = "Enable Multi-AZ deployment"
-  type = bool
-  default = false 
+  type        = bool
+  default     = false
 }
 
 variable "availability_zone" {
   description = "Availability zone for Single AZ deployment"
-  type = string
-  default = null
+  type        = string
+  default     = null
 }
 
 variable "backup_retention_period" {
   description = "Backup retention period in days"
-  type = number
-  default = 7
+  type        = number
+  default     = 7
 }
 
 variable "skip_final_snapshot" {
   description = "Skip final snapshot when destroying"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "deletion_protection" {
   description = "Enable deletion protection"
-  type = bool
-  default = false
+  type        = bool
+  default     = false
 }
 
 variable "monitoring_interval" {
   description = "Enhanced monitoring interval in seconds (0, 1, 5, 10, 15, 30, 60)"
-  type = number
-  default = 0
+  type        = number
+  default     = 0
 }
 
 variable "tags" {
   description = "Common tags to apply to all resources"
-  type = map(string)
-  default = {}
+  type        = map(string)
+  default     = {}
 }
