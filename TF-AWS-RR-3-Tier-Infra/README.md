@@ -1,6 +1,6 @@
 # Ritual Roast - 3-Tier AWS Infrastructure
 
-Highly available 3-tier application: Fask web app, MySQL database.
+Highly available 3-tier application: Flask web application, MySQL database.
 
 ## Quick Deployment
 
