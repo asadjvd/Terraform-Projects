@@ -38,7 +38,7 @@ subnet_az_mapping = {
   db-subnet-1b = "us-east-1b"
 }
 
-
+enable_nat_gateway = true
 single_nat_gateway   = true  # false for high availability (costs more)
 
 # SSH Configuration
