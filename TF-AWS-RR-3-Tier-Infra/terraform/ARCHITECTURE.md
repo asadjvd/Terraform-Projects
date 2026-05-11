@@ -90,7 +90,7 @@
                                                ┌────────────────────┐
                                                │   RDS MySQL SG     │
                                                │   Allow: 3306      │
-                                               │ Source: Web/App SG │
+                                               │ Source: Web SG │
                                                └────────────────────┘
 ```
 
@@ -233,7 +233,7 @@ For production, consider:
 ## 🔐 Secrets Management
 
 ```
-AWS Secrets Manager: dev-goal-tracker-db-credentials
+AWS Secrets Manager: ritualroast-db-secret
 ┌─────────────────────────────────────────────────────┐
 │  {                                                  │
 │    "username": "dbadmin",                           │
