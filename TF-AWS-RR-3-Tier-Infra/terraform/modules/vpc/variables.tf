@@ -46,10 +46,6 @@ variable "single_nat_gateway" {
   default     = true
 }
 
-variable "nat_gateway_subnet_mapping" {
-  type = map(string)
-}
-
 variable "subnet_az_mapping" {
   type = map(string)
 }
