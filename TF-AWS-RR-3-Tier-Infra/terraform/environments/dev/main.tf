@@ -36,7 +36,7 @@ module "s3" {
   bucket_name   = var.bucket_name
   environment   = var.environment
   project       = var.project
-  bucket_suffix = 4
+  bucket_suffix = var.bucket_suffix
   tags          = var.tags
 }
 
