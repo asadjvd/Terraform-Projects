@@ -8,6 +8,7 @@ Highly available 3-tier application: Flask web application, MySQL database.
 
 ```bash
 cd terraform/environments/dev
+cp terraform.tfvars.example terraform.tfvars
 nano terraform.tfvars
 ```
 
