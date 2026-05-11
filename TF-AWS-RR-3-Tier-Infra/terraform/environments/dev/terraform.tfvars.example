@@ -43,6 +43,10 @@ single_nat_gateway   = true  # false for high availability (costs more)
 # SSH Configuration
 ssh_key_name     = "your-key-pair-name"  # REQUIRED: Replace with your key pair name
 
+# S3 Bucket
+bucket_name   = "rr-source-code"
+bucket_suffix = 4
+
 # ASG Configuration
 webapp_instance_type    = "t3.micro"
 webapp_min_size         = 2
