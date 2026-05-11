@@ -45,10 +45,10 @@ single_nat_gateway   = true  # false for high availability (costs more)
 ssh_key_name     = "your-key-pair-name"  # REQUIRED: Replace with your key pair name
 
 # ASG Configuration
-web_instance_type    = "t3.micro"
-web_min_size         = 2
-web_max_size         = 4
-web_desired_capacity = 2
+webapp_instance_type    = "t3.micro"
+webapp_min_size         = 2
+webapp_max_size         = 4
+webapp_desired_capacity = 2
 
 # RDS Configuration
 db_instance_class       = "db.t3.micro"
