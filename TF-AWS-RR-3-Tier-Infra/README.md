@@ -53,13 +53,6 @@ terraform output application_url
 - S3 Bucket for storing and pulling project files
 - CloudWatch for logging
 
-## Troubleshooting
-
-**Check logs:**
-```bash
-aws logs tail /aws/ec2/dev-goal-tracker/frontend --follow --region us-east-1
-```
-
 ## Cleanup
 
 ```bash
