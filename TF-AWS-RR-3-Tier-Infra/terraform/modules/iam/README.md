@@ -50,5 +50,5 @@ module "iam" {
 The EC2 role includes:
 - **AmazonSSMManagedInstanceCore**: Session Manager access (no SSH keys needed)
 - **Custom Secrets Manager Policy**: Read database credentials
-- **Custom S3 Policy**: Get project files
+- **Custom S3 Access Policy**: Pull Flask application code from S3 bucket during bootstrapping
 
