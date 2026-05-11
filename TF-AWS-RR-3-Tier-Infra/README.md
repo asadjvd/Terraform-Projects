@@ -61,4 +61,4 @@ terraform destroy -auto-approve
 ---
 
 
-**Stack:** Terraform | Docker | AWS | Node.js | Go | PostgreSQL
+**Stack:** Terraform | AWS | Python | MySQL
