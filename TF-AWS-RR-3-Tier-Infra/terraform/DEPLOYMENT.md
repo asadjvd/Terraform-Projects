@@ -1,3 +1,0 @@
-# Deployment Screenshots
-
-## Architecture Diagram
