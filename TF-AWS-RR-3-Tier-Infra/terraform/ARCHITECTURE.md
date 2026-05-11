@@ -80,7 +80,7 @@
 
 ```
 ┌────────────┐     ┌────────────────────┐     ┌────────────────────┐
-│ Internet   │────▶│   ALB Security SG  │────▶│   Web/App SG      │
+│ Internet   │────▶│   ALB SG          │────▶│   Web SG           │
 │ 0.0.0.0/0  │     │   Allow: 80        │     │   Allow: 5000      │
 └────────────┘     └────────────────────┘     │   Source: ALB SG   │
                                               └─────────┬──────────┘
@@ -88,9 +88,9 @@
                                                         │
                                                         ▼
                                                ┌────────────────────┐
-                                               │   RDS MySQL SG     │
+                                               │   Database SG      │
                                                │   Allow: 3306      │
-                                               │ Source: Web SG │
+                                               │ Source: Web SG     │
                                                └────────────────────┘
 ```
 
@@ -106,8 +106,8 @@
        • Load balances across healthy instances
        • Health check: GET / every 30s
        
-3. Backend to Database
-   └─▶ Backend → RDS MySQL (port 3306)
+3. Web to Database
+   └─▶ Web → RDS MySQL (port 3306)
        • Credentials from Secrets Manager
        • Connection pooling
        • SSL/TLS encrypted
