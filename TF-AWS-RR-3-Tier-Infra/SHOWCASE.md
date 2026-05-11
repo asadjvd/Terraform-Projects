@@ -6,7 +6,7 @@
 
 ---
 
-<img src="Images/RR_LLD.png"
+<img src="Images/RR_LLD.png">
 
 ---
 
