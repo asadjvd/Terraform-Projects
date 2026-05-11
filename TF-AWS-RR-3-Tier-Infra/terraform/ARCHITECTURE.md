@@ -69,7 +69,7 @@
 │  │   │  • Automated Backups                                         │    │   │
 │  │   │  • DB Subnet Group                                           │    │   │
 │  │   │  • No Public Access                                          │    │   │
-│  │   │  • Access allowed only from Web/App Security Group           │    │   │
+│  │   │  • Access allowed only from Web Security Group           │    │   │
 │  │   └──────────────────────────────────────────────────────────────┘    │   │
 │  └───────────────────────────────────────────────────────────────────────┘   │
 │                                                                              │
