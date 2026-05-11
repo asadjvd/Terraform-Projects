@@ -17,7 +17,6 @@ module "vpc" {
   web_subnet_cidrs           = var.web_subnet_cidrs
   database_subnet_cidrs      = var.database_subnet_cidrs
   availability_zones         = var.availability_zones
-  nat_gateway_subnet_mapping = var.nat_gateway_subnet_mapping
   subnet_az_mapping          = var.subnet_az_mapping
   tags                       = var.tags
 }
