@@ -51,7 +51,7 @@ terraform output application_url
 - RDS MySQL (Multi-AZ optional)
 - NAT Gateway (1 or 2 for HA)
 - Secrets Manager for credentials
-- S3 Bucket for storing and pulling project files
+- S3 Bucket to download Flask application code during bootstrapping 
 - CloudWatch for logging
 
 ## Cleanup
