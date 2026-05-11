@@ -22,7 +22,6 @@ variable "vpc_cidr" {
   type        = string
 }
 
-
 variable "availability_zones" {
   description = "List of availability zones"
   type        = map(string)
@@ -131,19 +130,19 @@ variable "ssh_key_name" {
 
 # Frontend ASG
 variable "webapp_instance_type" {
-  description = "Frontend instance type"
+  description = "Webapp instance type"
   type        = string
   default     = "t3.micro"
 }
 
 variable "webapp_min_size" {
-  description = "Frontend ASG minimum size"
+  description = "Webapp ASG minimum size"
   type        = number
   default     = 2
 }
 
 variable "webapp_max_size" {
-  description = "Frontend ASG maximum size"
+  description = "Webapp ASG maximum size"
   type        = number
   default     = 4
 }
