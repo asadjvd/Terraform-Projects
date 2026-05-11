@@ -4,7 +4,7 @@
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│                           Internet (0.0.0.0/0)                              │
+│                           Internet (0.0.0.0/0)                               │
 └───────────────────────────────────┬──────────────────────────────────────────┘
                                     │
                             ┌───────▼────────┐
@@ -16,15 +16,15 @@
 │  VPC: 10.16.0.0/16                │                                          │
 │                                   │                                          │
 │  ┌────────────────────────────────▼──────────────────────────────────────┐   │
-│  │  PUBLIC SUBNETS                                                      │   │
-│  │  10.16.0.0/20 (AZ-a) | 10.16.16.0/20 (AZ-b)                          │   │
+│  │  PUBLIC SUBNETS                                                       │   │
+│  │  10.16.0.0/20 (AZ-a) | 10.16.16.0/20 (AZ-b)                           │   │
 │  ├───────────────────────────────────────────────────────────────────────┤   │
 │  │                                                                       │   │
 │  │   ┌──────────────────────────────────────────────────────────────┐    │   │
-│  │   │  Application Load Balancer (Internet-facing)                │    │   │
-│  │   │  • HTTP Listener :80                                        │    │   │
-│  │   │  • Health Checks                                            │    │   │
-│  │   │  • Target Group → EC2 Instances :5000                       │    │   │
+│  │   │  Application Load Balancer (Internet-facing)                │     │   │
+│  │   │  • HTTP Listener :80                                        │     │   │
+│  │   │  • Health Checks                                            │     │   │
+│  │   │  • Target Group → EC2 Instances :5000                       │     │   │
 │  │   └───────────────────────────┬──────────────────────────────────┘    │   │
 │  │                               │                                       │   │
 │  │   ┌───────────────────────────▼──────────────────────────────────┐    │   │
@@ -36,40 +36,40 @@
 │                                                                              │
 │                                                                              │
 │  ┌───────────────────────────────────────────────────────────────────────┐   │
-│  │  WEB PRIVATE SUBNETS (Application Tier)                              │   │
-│  │  10.16.64.0/20 (AZ-a) | 10.16.80.0/20 (AZ-b)                       │   │
+│  │  WEB PRIVATE SUBNETS (Application Tier)                               │   │
+│  │  10.16.64.0/20 (AZ-a) | 10.16.80.0/20 (AZ-b)                          │   │
 │  ├───────────────────────────────────────────────────────────────────────┤   │
 │  │                                                                       │   │
 │  │   ┌──────────────────────────────────────────────────────────────┐    │   │
-│  │   │  Auto Scaling Group                                         │    │   │
-│  │   │  • EC2 Instances: 2-4 (t3.micro)                            │    │   │
-│  │   │  • Launch Template                                          │    │   │
-│  │   │      - AMI                                                  │    │   │
-│  │   │      - IAM Instance Profile                                 │    │   │
-│  │   │      - User Data Script                                     │    │   │
-│  │   │  • Flask Application running on Port 5000                   │    │   │
-│  │   │  • Pulls source code from S3 Bucket                         │    │   │
-│  │   │  • Retrieves DB credentials from Secrets Manager            │    │   │
-│  │   │  • Registered to ALB Target Group                           │    │   │
-│  │   │  • Health Check: ELB                                        │    │   │
-│  │   │  • Scaling Policy: Target Tracking (CPU 70%)                │    │   │
+│  │   │  Auto Scaling Group                                          │    │   │
+│  │   │  • EC2 Instances: 2-4 (t3.micro)                             │    │   │
+│  │   │  • Launch Template                                           │    │   │
+│  │   │      - AMI                                                   │    │   │
+│  │   │      - IAM Instance Profile                                  │    │   │
+│  │   │      - User Data Script                                      │    │   │
+│  │   │  • Flask Application running on Port 5000                    │    │   │
+│  │   │  • Pulls source code from S3 Bucket                          │    │   │
+│  │   │  • Retrieves DB credentials from Secrets Manager             │    │   │
+│  │   │  • Registered to ALB Target Group                            │    │   │
+│  │   │  • Health Check: ELB                                         │    │   │
+│  │   │  • Scaling Policy: Target Tracking (CPU 70%)                 │    │   │
 │  │   └───────────────────────────┬──────────────────────────────────┘    │   │
 │  └───────────────────────────────┼───────────────────────────────────────┘   │
 │                                  │                                           │
 │                                  │                                           │
 │  ┌────────────────────────────────▼──────────────────────────────────────┐   │
-│  │  DATABASE PRIVATE SUBNETS (Data Tier)                                │   │
-│  │  10.16.192.0/20 (AZ-a) | 10.16.208.0/20 (AZ-b)                       │   │
+│  │  DATABASE PRIVATE SUBNETS (Data Tier)                                 │   │
+│  │  10.16.192.0/20 (AZ-a) | 10.16.208.0/20 (AZ-b)                        │   │
 │  ├───────────────────────────────────────────────────────────────────────┤   │
 │  │                                                                       │   │
 │  │   ┌──────────────────────────────────────────────────────────────┐    │   │
-│  │   │  Amazon RDS MySQL 8.0                                       │    │   │
-│  │   │  • Instance: db.t3.micro                                    │    │   │
-│  │   │  • Storage: 20GB gp3                                        │    │   │
-│  │   │  • Automated Backups                                        │    │   │
-│  │   │  • DB Subnet Group                                          │    │   │
-│  │   │  • No Public Access                                         │    │   │
-│  │   │  • Access allowed only from Web/App Security Group          │    │   │
+│  │   │  Amazon RDS MySQL 8.0                                        │    │   │
+│  │   │  • Instance: db.t3.micro                                     │    │   │
+│  │   │  • Storage: 20GB gp3                                         │    │   │
+│  │   │  • Automated Backups                                         │    │   │
+│  │   │  • DB Subnet Group                                           │    │   │
+│  │   │  • No Public Access                                          │    │   │
+│  │   │  • Access allowed only from Web/App Security Group           │    │   │
 │  │   └──────────────────────────────────────────────────────────────┘    │   │
 │  └───────────────────────────────────────────────────────────────────────┘   │
 │                                                                              │
@@ -170,17 +170,17 @@
 │                                                    │
 │  • CloudWatchAgentServerPolicy                     │
 │    └─▶ Send logs and metrics to CloudWatch         │
-│                                                    │
-│  • Custom Secrets Manager Policy                   │
+│                                                     │
+│  • Custom Secrets Manager Policy                    │
 │    └─▶ Read database credentials from              │
-│        AWS Secrets Manager                         │
+│        AWS Secrets Manager                          │
 │                                                     │
-│  • Custom S3 Access Policy                         │
+│  • Custom S3 Access Policy                          │
 │    └─▶ Download Flask application code             │
-│        from S3 bucket during bootstrapping         │
+│        from S3 bucket during bootstrapping          │
 │                                                     │
-│  • IAM Instance Profile attached to                │
-│    Auto Scaling Group EC2 instances                │
+│  • IAM Instance Profile attached to                 │
+│    Auto Scaling Group EC2 instances                 │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -188,20 +188,20 @@
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  Amazon RDS MySQL 8.0                              │
+│  Amazon RDS MySQL 8.0                               │
 ├─────────────────────────────────────────────────────┤
-│  Engine: MySQL 8.0                                 │
-│  Instance: db.t3.micro                             │
-│  Storage: 20GB gp3                                 │
-│  Multi-AZ: Optional (Dev: Disabled)                │
+│  Engine: MySQL 8.0                                  │
+│  Instance: db.t3.micro                              │
+│  Storage: 20GB gp3                                  │
+│  Multi-AZ: Optional (Dev: Disabled)                 │
 │                                                     │
-│  ┌─────────────────────────────────────────────┐   │
-│  │  Database: ritualroastdb                    │   │
-│  │                                             │   │
-│  │  Application stores coffee/order data       │   │
-│  │  accessed by Flask application running      │   │
-│  │  on EC2 instances                           │   │
-│  └─────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────┐    │
+│  │  Database: ritualroastdb                    │    │
+│  │                                             │    │
+│  │  Application stores coffee/order data       │    │
+│  │  accessed by Flask application running      │    │
+│  │  on EC2 instances                           │    │
+│  └─────────────────────────────────────────────┘    │
 │                                                     │
 │  Security:                                          │
 │  • Private Database Subnets                         │
