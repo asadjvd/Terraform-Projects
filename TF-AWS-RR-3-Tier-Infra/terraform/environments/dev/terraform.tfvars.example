@@ -1,1 +1,69 @@
+# Example values for development environment
+# Copy this file to terraform.tfvars and adjust values
 
+region      = "us-east-1"
+environment = "dev"
+project     = "ritual-roast"
+
+# Network Configuration
+vpc_cidr = "10.16.0.0/16"
+
+# Public Subnets
+public_subnet_cidrs = {
+  public-subnet-1a = "10.16.0.0/20"
+  public-subnet-1b = "10.16.16.0/20"
+}
+
+# Web Private Subnets
+web_subnet_cidrs = {
+  web-subnet-1a = "10.16.64.0/20"
+  web-subnet-1b = "10.16.80.0/20"
+}
+
+# Database Private Subnets
+database_subnet_cidrs = {
+  db-subnet-1a = "10.16.192.0/20"
+  db-subnet-1b = "10.16.208.0/20"
+}
+
+# Availability Zones Mapping
+subnet_az_mapping = {
+  public-subnet-1a = "us-east-1a"
+  public-subnet-1b = "us-east-1b"
+
+  web-subnet-1a = "us-east-1a"
+  web-subnet-1b = "us-east-1b"
+
+  db-subnet-1a = "us-east-1a"
+  db-subnet-1b = "us-east-1b"
+}
+
+
+single_nat_gateway   = true  # false for high availability (costs more)
+
+# SSH Configuration
+ssh_key_name     = "your-key-pair-name"  # REQUIRED: Replace with your key pair name
+
+# ASG Configuration
+web_instance_type    = "t3.micro"
+web_min_size         = 2
+web_max_size         = 4
+web_desired_capacity = 2
+
+# RDS Configuration
+db_instance_class       = "db.t3.micro"
+db_allocated_storage    = 20
+db_engine_version       = "8.4.7"
+db_name                 = "ritualroastdb"
+db_username             = "dbadmin"
+db_multi_az             = false  # true for high availability
+db_backup_retention     = 7
+db_skip_final_snapshot  = true   # false for production
+
+# Tags
+tags = {
+  Environment = "dev"
+  Project     = "ritual-roast"
+  ManagedBy   = "terraform"
+  Owner       = "devops-team"
+}
