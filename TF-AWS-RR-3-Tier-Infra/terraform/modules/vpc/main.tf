@@ -129,7 +129,7 @@ resource "aws_route_table" "public" {
     var.tags,
     {
       Name = "${var.environment}-${var.project}-public-rtb"
-      Tier = "Public"
+      Tier = "public"
     }
   )
 }
