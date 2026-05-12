@@ -148,7 +148,7 @@ variable "webapp_max_size" {
 }
 
 variable "webapp_desired_capacity" {
-  description = "Frontend ASG desired capacity"
+  description = "Webapp ASG desired capacity"
   type        = number
   default     = 2
 }
