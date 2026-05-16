@@ -1,0 +1,57 @@
+variable "environment" {
+  description = "Environment name"
+  type        = string
+}
+
+variable "project" {
+  description = "Project name"
+  type        = string
+}
+
+variable "vpc_cidr" {
+  description = "CIDR block for the VPC"
+  type        = string
+  default     = "10.16.0.0/16"
+}
+
+variable "availability_zones" {
+  description = "Map of availability zones"
+  type        = map(string)
+}
+
+variable "public_subnet_cidrs" {
+  description = "CIDR block for Public subnets"
+  type        = map(string)
+}
+
+variable "webapp_subnet_cidrs" {
+  description = "CIDR block for Webapp subnets"
+  type        = map(string)
+}
+
+variable "database_subnet_cidrs" {
+  description = "CIDR block for Database subnets"
+  type        = map(string)
+}
+
+variable "enable_nat_gateway" {
+  description = "Enable NAT Gateway for private subnets"
+  type        = bool
+  default     = true
+}
+
+variable "single_nat_gateway" {
+  description = "Use a single NAT GW for all private subnets for cost optimization"
+  type        = bool
+  default     = true
+}
+
+variable "subnet_az_mapping" {
+  type = map(string)
+}
+
+variable "tags" {
+  description = "Common tags to apply to all resources"
+  type        = map(string)
+  default     = {}
+}
