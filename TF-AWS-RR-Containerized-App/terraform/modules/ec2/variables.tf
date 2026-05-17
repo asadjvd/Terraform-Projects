@@ -41,10 +41,12 @@ variable "subnet_id" {
 }
 
 variable "frontend" {
+  description = "Frontend zip file and directory name"
   type        = string
 }
 
 variable "backend" {
+  description = "Backend zip file and directory name"
   type        = string
 }
 
