@@ -55,7 +55,7 @@ resource "aws_security_group" "webapp_sg" {
     protocol        = "tcp"
     security_groups = [aws_security_group.alb_sg.id]
   }
-  
+
   egress {
     description = "Allow all outbound traffic"
     from_port   = 0
