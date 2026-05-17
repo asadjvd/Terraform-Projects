@@ -41,21 +41,21 @@ variable "subnet_id" {
 }
 
 variable "frontend" {
-  description = "NextJS frontend app repo name in ECR"
   type        = string
 }
 
 variable "backend" {
-  description = "Flask backend app repo name in ECR"
   type        = string
 }
 
 variable "frontend_repo_name" {
-  type = string
+  description = "NextJS frontend app repo name in ECR"
+  type        = string
 }
 
 variable "backend_repo_name" {
-  type = string
+  description = "Flask backend app repo name in ECR"
+  type        = string
 }
 
 variable "frontend_url" {
