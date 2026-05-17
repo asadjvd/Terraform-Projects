@@ -11,12 +11,6 @@ backend_repo_name="${backend_repo_name}"
 backend_url="${backend_url}"
 frontend_url="${frontend_url}"
 
-echo "REGION: $region"
-echo "FRONTEND: $frontend"
-echo "BACKEND: $backend"
-echo "Frontend Repo Name: $frontend_repo_name"
-echo "Frontend Repo Name: $backend_repo_name"
-
 # Variable Declaration
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 
@@ -33,7 +27,6 @@ sudo usermod -aG docker ec2-user
 
 # LOGIN TO ECR
 echo "Logging into ECR..."
-echo "ACCOUNT ID is: $AWS_ACCOUNT_ID"
 
 aws ecr get-login-password --region "$region" | \
 docker login --username AWS --password-stdin \
