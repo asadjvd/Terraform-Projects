@@ -1,8 +1,8 @@
 resource "random_password" "db_password" {
-  length  = 16
-  special = true
+  length            = 16
+  special           = true
   # Exclude characters that might cause issues in connection strings
-  override_special = "!#$%&*()-_=+[]{}<>:?"
+  override_special  = "!#$%&*()-_=+[]{}<>:?"
 }
 
 module "vpc" {
@@ -85,7 +85,6 @@ module "ec2" {
 
   environment          = var.environment
   project              = var.project
-  key_name             = var.ssh_key_name
   region               = var.region
   instance_type        = var.instance_type
   frontend             = var.frontend
