@@ -5,9 +5,6 @@ region      = "us-east-1"
 environment = "dev"
 project     = "ritual-roast"
 
-# SSH Configuration
-ssh_key_name = "Putty" # REQUIRED: Replace with your key pair name
-
 # Network Configuration
 vpc_cidr = "10.16.0.0/16"
 
