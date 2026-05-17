@@ -112,12 +112,6 @@ variable "db_skip_final_snapshot" {
   default     = true
 }
 
-# SSH
-variable "ssh_key_name" {
-  description = "SSH key pair name for EC2 instances"
-  type        = string
-}
-
 # ECR
 variable "frontend_repo_name" {
   type = string
