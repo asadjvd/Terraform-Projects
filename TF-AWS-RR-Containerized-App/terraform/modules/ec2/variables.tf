@@ -25,11 +25,6 @@ variable "instance_type" {
   default     = "t3.micro"
 }
 
-variable "key_name" {
-  description = "SSH key pair name"
-  type        = string
-}
-
 variable "iam_instance_profile" {
   description = "IAM instance profile name"
   type        = string
