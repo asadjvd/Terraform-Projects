@@ -24,7 +24,6 @@ resource "aws_instance" "docker_server" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [var.security_group_id]
   subnet_id              = var.subnet_id
-  key_name               = var.key_name
   iam_instance_profile   = var.iam_instance_profile
 
   user_data = templatefile("${path.root}/../../userdata.sh", {
