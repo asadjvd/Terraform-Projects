@@ -214,4 +214,4 @@ terraform destroy -auto-approve
 
 # Stack
 
-Terraform | AWS ECS Fargate | Docker | Amazon ECR | Application Load Balancer | RDS MySQL | CloudWatch | Secrets Manager | Next.js | Flask
+Terraform | AWS | RDS MySQL | Next.js | Flask
