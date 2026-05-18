@@ -55,5 +55,4 @@ The EC2 role includes:
 
 The ECS role include: 
 - **Custom Secrets Manager Policy**: Read database credentials
-- ****
 
