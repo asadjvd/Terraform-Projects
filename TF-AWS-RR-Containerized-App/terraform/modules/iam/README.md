@@ -1,13 +1,13 @@
 # IAM Module
 
-This module creates IAM roles and instance profiles for EC2 instances in the Ritual Roast application.
+This module creates IAM roles for ECS and EC2 instance. Also, an instance profiles for EC2 instance in the Ritual Roast application.
 
 ## Features
 
-- EC2 instance role with assume role policy
+- ECS and EC2 instance role with assume role policy
 - Systems Manager (SSM) access for Session Manager
 - Secrets Manager access for database credentials
-- S3 Bucket access for project files
+- ECR access to pull images from Amazon ECR 
 - Instance profile for EC2 attachment
 
 ## Usage
