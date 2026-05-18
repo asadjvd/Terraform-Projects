@@ -6,7 +6,7 @@ This module creates all security groups for the 3-tier Ritual Roast application 
 
 ### Traffic Flow
 ```
-Internet → ALB SG (80) → Frontend SG (3000) → RDS SG (3306)
+Internet → ALB SG (80) → WebApp SG (3000 & 5000) → RDS SG (3306)
 ```
 
 ### Security Groups
