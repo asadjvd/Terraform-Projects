@@ -51,8 +51,9 @@ module "iam" {
 
 The EC2 role includes:
 - **AmazonSSMManagedInstanceCore**: Session Manager access (no SSH keys needed)
+- **AmazonEC2ContainerRegistryPowerUser**: To create repositories and push images to Amazon ECR
 
 The ECS role include: 
 - **Custom Secrets Manager Policy**: Read database credentials
-- **Custom **
+- ****
 
