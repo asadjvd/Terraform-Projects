@@ -6,7 +6,7 @@ This module creates a complete 3-tier VPC infrastructure for the Ritual Roast ap
 
 ### Subnets
 - **Public Subnets**: Internet-facing resources (ALB, NAT Gateways)
-- **Frontend Subnets (Web Tier)**: Flask application servers
+- **Frontend/Backend Subnets (Web Tier)**: Flask and NextJS application servers
 - **Database Subnets (Data Tier)**: MySQL RDS instances (completely isolated)
 
 ### Routing
@@ -23,11 +23,37 @@ module "vpc" {
   environment        = "dev"
   project            = "ritual-roast"
   vpc_cidr           = "10.16.0.0/16"
-  availability_zones = ["us-east-1a", "us-east-1b"]
 
-  public_subnet_cidrs   = ["10.16.0.0/20", "10.16.16.0/20"]
-  web_subnet_cidrs = ["10.16.64.0/20", "10.16.80.0/20"]
-  database_subnet_cidrs = ["10.16.192.0/20", "10.16.208.0/20"]
+  availability_zones = {
+    az-1a = "us-east-1a"
+    az-1b = "us-east-1b"
+  }
+
+  public_subnet_cidrs = {
+    public-subnet-1a = "10.16.0.0/20"
+    public-subnet-1b = "10.16.16.0/20"
+  }
+
+  web_subnet_cidrs = {
+    web-subnet-1a = "10.16.64.0/20"
+    web-subnet-1b = "10.16.80.0/20"
+  }
+
+  database_subnet_cidrs = {
+    db-subnet-1a = "10.16.192.0/20"
+    db-subnet-1b = "10.16.208.0/20"
+  }
+
+  subnet_az_mapping = {
+    public-subnet-1a = "us-east-1a"
+    public-subnet-1b = "us-east-1b"
+
+    web-subnet-1a = "us-east-1a"
+    web-subnet-1b = "us-east-1b"
+
+    db-subnet-1a = "us-east-1a"
+    db-subnet-1b = "us-east-1b"
+  }
 
   enable_nat_gateway  = true
   single_nat_gateway  = true  # Set to false for multi-AZ NAT (higher cost)
@@ -37,6 +63,7 @@ module "vpc" {
     ManagedBy   = "terraform"
   }
 }
+
 ```
 
 ## Inputs
@@ -46,7 +73,7 @@ module "vpc" {
 | vpc_cidr | CIDR block for VPC | string | "10.16.0.0/16" | no |
 | environment | Environment name | string | - | yes |
 | project | Project name | string | - | yes |
-| availability_zones | List of AZs | list(string) | - | yes |
+| availability_zones | Map of AZs | map(string) | - | yes |
 | public_subnet_cidrs | Public subnet CIDRs | map(string) | - | yes |
 | web_subnet_cidrs | Frontend subnet CIDRs | map(string) | - | yes |
 | database_subnet_cidrs | Database subnet CIDRs | map(string) | - | yes |
