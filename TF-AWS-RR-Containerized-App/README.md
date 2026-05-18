@@ -105,16 +105,6 @@ Deployment Time: ~15-20 minutes
 
 ---
 
-# 5. Access Application
-
-## Get application URL
-
-```bash
-terraform output application_url
-```
-
----
-
 # Architecture Overview
 
 ## Deployed Resources
