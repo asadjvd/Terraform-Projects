@@ -44,11 +44,15 @@ module "iam" {
 | ec2_role_name | EC2 IAM role name |
 | ec2_instance_profile_arn | Instance profile ARN |
 | ec2_instance_profile_name | Instance profile name |
+| ecs_task_execution_role_arn | ECS Task Execution role ARN |
+| ecs_task_execution_role_name | ECS Task Execution role name |
 
 ## Permissions
 
 The EC2 role includes:
 - **AmazonSSMManagedInstanceCore**: Session Manager access (no SSH keys needed)
+
+The ECS role include: 
 - **Custom Secrets Manager Policy**: Read database credentials
-- **Custom S3 Access Policy**: Pull Flask application code from S3 bucket during bootstrapping
+- **Custom **
 
