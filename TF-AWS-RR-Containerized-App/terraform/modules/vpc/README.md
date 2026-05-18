@@ -1,6 +1,6 @@
 # VPC Module
 
-This module creates a complete 3-tier VPC infrastructure for the Ritual Roast application.
+This module creates a complete 3-tier VPC infrastructure for the containerized Ritual Roast application.
 
 ## Architecture
 
