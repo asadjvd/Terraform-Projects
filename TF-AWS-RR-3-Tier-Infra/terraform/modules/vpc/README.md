@@ -24,14 +24,6 @@ module "vpc" {
   project            = "ritual-roast"
   vpc_cidr           = "10.16.0.0/16"
 
-  ```hcl
-module "vpc" {
-  source = "../../modules/vpc"
-
-  environment        = "dev"
-  project            = "ritual-roast"
-  vpc_cidr           = "10.16.0.0/16"
-
   availability_zones = {
     az-1a = "us-east-1a"
     az-1b = "us-east-1b"
