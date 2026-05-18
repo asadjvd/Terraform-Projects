@@ -30,30 +30,30 @@ module "vpc" {
   }
 
   public_subnet_cidrs = {
-  public-subnet-1a = "10.16.0.0/20"
-  public-subnet-1b = "10.16.16.0/20"
-}
+    public-subnet-1a = "10.16.0.0/20"
+    public-subnet-1b = "10.16.16.0/20"
+  }
 
-web_subnet_cidrs = {
-  web-subnet-1a = "10.16.64.0/20"
-  web-subnet-1b = "10.16.80.0/20"
-}
+  web_subnet_cidrs = {
+    web-subnet-1a = "10.16.64.0/20"
+    web-subnet-1b = "10.16.80.0/20"
+  }
 
-database_subnet_cidrs = {
-  db-subnet-1a = "10.16.192.0/20"
-  db-subnet-1b = "10.16.208.0/20"
-}
+  database_subnet_cidrs = {
+    db-subnet-1a = "10.16.192.0/20"
+    db-subnet-1b = "10.16.208.0/20"
+  }
 
-subnet_az_mapping = {
-  public-subnet-1a = "us-east-1a"
-  public-subnet-1b = "us-east-1b"
+  subnet_az_mapping = {
+    public-subnet-1a = "us-east-1a"
+    public-subnet-1b = "us-east-1b"
 
-  web-subnet-1a = "us-east-1a"
-  web-subnet-1b = "us-east-1b"
+    web-subnet-1a = "us-east-1a"
+    web-subnet-1b = "us-east-1b"
 
-  db-subnet-1a = "us-east-1a"
-  db-subnet-1b = "us-east-1b"
-}
+    db-subnet-1a = "us-east-1a"
+    db-subnet-1b = "us-east-1b"
+  }
 
   enable_nat_gateway  = true
   single_nat_gateway  = true  # Set to false for multi-AZ NAT (higher cost)
@@ -64,14 +64,6 @@ subnet_az_mapping = {
   }
 }
 
-  enable_nat_gateway  = true
-  single_nat_gateway  = true  # Set to false for multi-AZ NAT (higher cost)
-
-  tags = {
-    Environment = "dev"
-    ManagedBy   = "terraform"
-  }
-}
 ```
 
 ## Inputs
