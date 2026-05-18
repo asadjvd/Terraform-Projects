@@ -1,6 +1,6 @@
 # Security Groups Module
 
-This module creates all security groups for the 3-tier Ritual Roast application with proper network isolation.
+This module creates all security groups for the 3-tier containerized Ritual Roast application with proper network isolation.
 
 ## Security Architecture
 
@@ -16,7 +16,7 @@ Internet → ALB SG (80) → WebApp SG (3000 & 5000) → RDS SG (3306)
    - Egress: All traffic
    - Purpose: Public-facing load balancer
 
-2. **Web Security Group**
+2. **WebApp Security Group**
    - Ingress: Port 5000 from ALB SG
    - Ingress: Port 3000 from ALB SG
    - Egress: All traffic
@@ -58,7 +58,7 @@ module "security_groups" {
 | Name | Description |
 |------|-------------|
 | alb_sg_id | ALB security group ID |
-| web_sg_id | Frontend security group ID |
+| webapp_sg_id | Webapp security group ID |
 | database_sg_id | RDS security group ID |
 
 ✅ **Implemented**:
