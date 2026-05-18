@@ -89,7 +89,7 @@ subnet_az_mapping = {
 | vpc_cidr | CIDR block for VPC | string | "10.16.0.0/16" | no |
 | environment | Environment name | string | - | yes |
 | project | Project name | string | - | yes |
-| availability_zones | List of AZs | list(string) | - | yes |
+| availability_zones | Map of AZs | map(string) | - | yes |
 | public_subnet_cidrs | Public subnet CIDRs | map(string) | - | yes |
 | web_subnet_cidrs | Frontend subnet CIDRs | map(string) | - | yes |
 | database_subnet_cidrs | Database subnet CIDRs | map(string) | - | yes |
