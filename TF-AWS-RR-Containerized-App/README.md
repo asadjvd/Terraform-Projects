@@ -112,10 +112,10 @@ Deployment Time: ~15-20 minutes
 - VPC with 6 subnets across 2 AZs (public, web/app, database)
 - Public Application Load Balancer (ALB)
 - ECS Cluster using AWS Fargate
+- ECS Task Definitions
 - ECS Services
   - Next.js Frontend Service
   - Flask Backend Service
-- ECS Task Definitions
 - Amazon ECR repositories
 - RDS MySQL (Multi-AZ optional)
 - NAT Gateway (1 or 2 for HA)
@@ -161,12 +161,12 @@ Deployment Time: ~15-20 minutes
 ### Load Balancer Security Group
 - Allow HTTP (80) from `0.0.0.0/0`
 
-### Web/App Security Group
+### WebApp Security Group
 - Allow Port 3000 from Load Balancer SG
 - Allow Port 5000 from Load Balancer SG
 
 ### Database Security Group
-- Allow Port 3306 from Web/App SG only
+- Allow Port 3306 from WebApp SG only
 
 ---
 
