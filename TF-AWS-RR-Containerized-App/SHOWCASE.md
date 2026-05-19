@@ -16,7 +16,7 @@
 
 ### Security Groups
 
-<img src="Images/TF-RR-ALB=SG.PNG">
+<img src="Images/TF-RR-ALB-SG.PNG">
 
 <img src="Images/TF-RR-Webapp-SG.PNG">
 
@@ -40,7 +40,34 @@
 
 ### IAM
 
-<img src="Images/TF-RR-IAM.PNG">
+<img src="Images/TF-RR-IAM-EC2.PNG">
+
+<img src="Images/TF-RR-IAM-ECS.PNG">
 
 ---
+
+### ECR
+
+<img src="Images/TF-RR-ECR.PNG">
+
+---
+
+### EC2 Docker Server
+
+<img src="Images/TF-RR-EC2-Docker-Server.PNG">
+
+---
+
+### ECR Images
+
+<img src="Images/TF-RR-Flask-Img.PNG">
+
+<img src="Images/TF-RR-NextJS-Img.PNG">
+
+---
+
+### ALB
+
+
+
 
