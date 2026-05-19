@@ -68,6 +68,34 @@
 
 ### ALB
 
+<img src="Images/TF-RR-ALB-TGs.PNG">
 
+<img src="Images/TF-RR-ALB-Listener-Rules.PNG">
+
+<img src="Images/TF-RR-ALB.PNG">
+
+---
+
+### ECS Cluster
+
+<img src="Images/TF-RR-ECS-Cluster.PNG">
+
+---
+
+### ECS Task Definitions
+
+<img src="Images/TF-RR-NextJS-ECS-Task-Definition.PNG">
+
+<img src="Images/TF-RR-Flask-ECS-Task-Definition.PNG">
+
+---
+
+### ECS Services
+
+<img src="Images/TF-RR-frontend-ECS-service.PNG">
+
+<img src="Images/TF-RR-backend-ECS-service.PNG">
+
+---
 
 
