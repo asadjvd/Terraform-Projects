@@ -279,10 +279,10 @@ Next.js Frontend → User Browser
 ├─────────────────────────────────────────────────────┤
 │                                                     │
 │  Frontend Repository                                │
-│   └─▶ ritual-roast-nextjs:latest                    │
+│   └─▶ ritual-roast-nextjs-app:latest                │
 │                                                     │
 │  Backend Repository                                 │
-│   └─▶ ritual-roast-flask:latest                     │
+│   └─▶ ritual-roast-flask-app:latest                 │
 │                                                     │
 │  ECS Tasks pull images securely using IAM Roles     │
 │                                                     │
@@ -302,7 +302,7 @@ Next.js Frontend → User Browser
   "engine": "mysql",
   "host": "ritual-roast-mysql.xxx.rds.amazonaws.com",
   "port": 3306,
-  "dbname": "ritualroastdb"
+  "dbname": "recipedb"
 }
 ```
 
