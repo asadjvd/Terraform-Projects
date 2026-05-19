@@ -110,18 +110,18 @@ Deployment Time: ~15-20 minutes
 ## Deployed Resources
 
 - VPC with 6 subnets across 2 AZs (public, web/app, database)
+- NAT Gateway (1 or 2 for HA)
+- AWS Secrets Manager for credentials
+- RDS MySQL (Multi-AZ optional)
+- Amazon ECR repositories
+- EC2 Docker Host managed through AWS Systems Manager (SSM)
 - Public Application Load Balancer (ALB)
 - ECS Cluster using AWS Fargate
 - ECS Task Definitions
 - ECS Services
   - Next.js Frontend Service
   - Flask Backend Service
-- Amazon ECR repositories
-- RDS MySQL (Multi-AZ optional)
-- NAT Gateway (1 or 2 for HA)
-- AWS Secrets Manager for credentials
 - CloudWatch for logging
-- EC2 Docker Host managed through AWS Systems Manager (SSM)
 
 ---
 
