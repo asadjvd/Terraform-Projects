@@ -106,8 +106,8 @@
 
 <img src="Images/TF-RR-Frontend-ALB-TG.PNG">
 
-<img src="Images/TF-RR-frontend-page.PNG">
+<img src="Images/TF-RR-frontend-page.png">
 
-<img src="Images/TF-RR-App-Screenshot.PNG">
+<img src="Images/TF-RR-App-Screenshot.png">
 
 ---
